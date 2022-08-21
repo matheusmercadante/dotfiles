@@ -1,0 +1,352 @@
+# Matheus Mercadante i3 config
+# For complete refernce visit http://i3wm.org/docs/userguide.html 
+
+#====================
+# VARIABLES
+#====================
+set $mod Mod4
+set $term alacritty
+set $web qutebrowser
+set $file ranger
+
+#====================
+# SOUND 
+#====================
+
+# exec --no-startup-id pulseaudio
+#exec --no-startup-id pa-applet
+# exec --no-startup-id mpd
+#bindsym XF86AudioNext		exec --no-startup-id mpc next
+#bindsym XF86AudioPlay		exec --no-startup-id mpc toggle
+#bindsym XF86AudioPrev		exec --no-startup-id mpc prev
+#bindsym XF86AudioStop		exec --no-startup-id mpc toggle
+
+#====================
+# DISPLAY
+#====================
+
+# font for window titles
+font pango:mono 12
+
+# resolution
+#exec --no-startup-id xrandr --output HDMI2 --off --output HDMI1 --off --output DP1 --off --output eDP1 --primary --mode 1600x900 --pos 0x0 --rotate normal --output VIRTUAL1 --off
+
+# background
+#exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+
+# brightness
+bindsym XF86MonBrightnessUp exec "xrandr --output eDP1 --brightness 0.9; notify-send 'brightness 90%'"
+bindsym XF86MonBrightnessDown exec "xrandr --output eDP1 --brightness 0.5; notify-send 'brightness 50%'"
+
+#====================
+# WORKSPACES
+#====================
+
+# workspace back and forth (with/without active container)
+# workspace_auto_back_and_forth yes
+
+# Workspace names
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 10
+
+#====================
+# WINDOWS
+#====================
+
+focus_follows_mouse no
+
+# Use Mouse+$mod to drag floating windows
+floating_modifier $mod
+
+# switch to workspace with urgent window automatically
+for_window [urgent=latest] focus
+
+# Set inner/outer gaps
+smart_gaps on
+gaps inner 10
+gaps outer 5
+
+# Hide borders
+smart_borders on
+hide_edge_borders none
+
+# Configure border style <normal|1pixel|pixel xx|none|pixel>
+new_window pixel 3
+new_float pixel 5
+
+# gaps inner|outer current|all set|plus|minus <px>
+
+# Gaps Mode
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+mode "$mode_gaps" {
+  bindsym o      mode "$mode_gaps_outer"
+  bindsym i      mode "$mode_gaps_inner"
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+mode "$mode_gaps_inner" {
+  bindsym plus  gaps inner current plus 5
+  bindsym minus gaps inner current minus 5
+  bindsym 0     gaps inner current set 0
+
+  bindsym Shift+plus  gaps inner all plus 5
+  bindsym Shift+minus gaps inner all minus 5
+  bindsym Shift+0     gaps inner all set 0
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+  bindsym plus  gaps outer current plus 5
+  bindsym minus gaps outer current minus 5
+  bindsym 0     gaps outer current set 0
+
+  bindsym Shift+plus  gaps outer all plus 5
+  bindsym Shift+minus gaps outer all minus 5
+  bindsym Shift+0     gaps outer all set 0
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+# Resize Mode (you can also use the mouse for that)
+mode "resize" {
+  # vim keys
+  bindsym h resize shrink width 5 px or 5 ppt
+  bindsym j resize grow height 5 px or 5 ppt
+  bindsym k resize shrink height 5 px or 5 ppt
+  bindsym l resize grow width 5 px or 5 ppt
+  # arrow keys
+  bindsym Left resize shrink width 5 px or 5 ppt
+  bindsym Down resize grow height 5 px or 5 ppt
+  bindsym Up resize shrink height 5 px or 5 ppt
+  bindsym Right resize grow width 5 px or 5 ppt
+  # exit resize mode: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+#====================
+# KEYBINDINGS
+#====================
+
+# 1:
+bindsym $mod+1 workspace $ws1
+bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Ctrl+1 move container to workspace $ws1
+
+# 2:
+bindsym $mod+2 workspace $ws2
+bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Ctrl+2 move container to workspace $ws2
+
+# 3:
+bindsym $mod+3 workspace $ws3
+bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Ctrl+3 move container to workspace $ws3
+
+# 4:
+bindsym $mod+4 workspace $ws4
+bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Ctrl+4 move container to workspace $ws4
+
+# 5:
+bindsym $mod+5 workspace $ws5
+bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Ctrl+5 move container to workspace $ws5
+
+# 6:
+bindsym $mod+6 workspace $ws6
+bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Ctrl+6 move container to workspace $ws6
+
+# 7:
+bindsym $mod+7 workspace $ws7
+bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Ctrl+7 move container to workspace $ws7
+
+# 8:
+bindsym $mod+8 workspace $ws8
+bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Ctrl+8 move container to workspace $ws8
+
+# 9:
+bindsym $mod+9 workspace $ws9
+bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
+bindsym $mod+Ctrl+9 move container to workspace $ws9
+
+# 0: system / display
+bindsym $mod+0 exec bash ~/.config/i3/system.sh
+bindsym $mod+Shift+0 exec dmenudisplay
+
+# Q: split toggle / kill focused window
+bindsym $mod+q split toggle
+bindsym $mod+Shift+q kill
+
+# W: web browser / tabbed layout
+bindsym $mod+w exec $web
+bindsym $mod+Shift+w layout tabbed
+
+# E: none / none
+# bindsym $mod+e
+# bindsym $mod+Shift+e
+
+# R: resize mode / restart i3
+bindsym $mod+r mode "resize"
+bindsym $mod+Shift+r restart
+
+# T: tiling layout / none
+bindsym $mod+t layout toggle split
+# bindsym $mod+Shift+t
+
+# Y: none / none 
+# bindsym $mod+y border pixel 3
+
+# U: border none / none
+bindsym $mod+u exec dmenuunicode
+# bindsym $mod+Shift+u 
+
+# A: focus parent
+bindsym $mod+a focus parent
+# bindsym $mod+Shift+a
+
+# S: server terminal / sticky toggle
+bindsym $mod+s exec bash ~/Website/rodapa/session.sh
+bindsym $mod+Shift+s sticky toggle
+
+# D: floating toggle / none
+bindsym $mod+d focus mode_toggle
+# bindsyme $mod+Shift+d
+
+# F: file browser / fullscreen
+bindsym $mod+f exec $term --title __file -e $file
+bindsym $mod+Shift+f fullscreen toggle
+
+# G: none / gaps mode
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+# H: focus left / move left
+bindsym $mod+h focus left
+bindsym $mod+Shift+h move left
+
+# J: focus down / move down
+bindsym $mod+j focus down
+bindsym $mod+Shift+j move down
+
+# K: focus up / move up
+bindsym $mod+k focus up
+bindsym $mod+Shift+k move up
+
+# L: focus right / move right
+bindsym $mod+l focus right
+bindsym $mod+Shift+l move right
+
+# X system menu / none
+bindsym $mod+x exec bash ~/.config/i3/system.sh
+# bindsym $mod+Shift+x
+
+# Z: none / none
+bindsym $mod+z exec dmenurecord
+bindsym $mod+Shift+z exec killrecording
+
+# C: calculator / reload config
+bindsym $mod+c exec $term -n calc -e octave --no-gui --quiet
+bindsym $mod+Shift+c reload
+
+# V: tile vertically / tile horizontally
+bindsym $mod+v split v;exec notify-send 'tile vertically'
+bindsym $mod+Shift+v split h;exec notify-send 'tile horizontally'
+
+# B: toggle bar / bmenu
+bindsym $mod+b bar mode toggle
+bindsym $mod+Shift+b exec $term -e 'bmenu'
+
+# N: none / dunst
+bindsym $mod+Shift+n --release exec "killall dunst; exec notify-send 'restart dunst'"
+
+# M: music / pavucontrol
+bindsym $mod+m exec $term -e 'ncmpcpp'
+bindsym $mod+Shift+m exec pavucontrol
+
+# Enter: terminal / none
+bindsym $mod+Return exec $term
+
+# Print : Screenshots
+bindsym Print exec --no-startup-id i3-scrot
+bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
+bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
+
+# Left Arrow
+bindsym $mod+Left focus left
+bindsym $mod+Shift+Left move left
+bindsym $mod+Ctrl+Left workspace prev
+
+# Down Arrow
+bindsym $mod+Down focus down
+bindsym $mod+Shift+Down move down
+
+# Up Arrow
+bindsym $mod+Up focus up
+bindsym $mod+Shift+Up move up
+
+# Right Arrow
+bindsym $mod+Right focus right
+bindsym $mod+Shift+Right move right
+bindsym $mod+Ctrl+Right workspace next
+
+# Space: dmenu / toggle floating
+bindsym $mod+space exec --no-startup-id dmenu_run -p run:
+bindsym $mod+Shift+space floating toggle
+
+# ;: none / none
+
+# Calculator Window
+for_window [instance="calc"] floating enable
+for_window [instance="calc"] resize set 600 500
+for_window [instance="calc"] border pixel 5
+for_window [instance="calc"] move position center
+
+# File manager Window
+for_window [class="Alacritty" title="__file"] floating enable
+for_window [class="Alacritty" title="__file"] resize set 1100 625
+for_window [class="Alacritty" title="__file"] border pixel 5
+for_window [class="Alacritty" title="__file"] move position center
+
+# Autostart applications
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id nm-applet
+
+#====================
+# COLORS
+#====================
+set $color0  #1d2021
+set $color1  #cc241d
+set $color2  #98971a
+set $color3  #d79921
+set $color4  #458588
+set $color5  #b16286
+set $color6  #689d6a
+set $color7  #ebdbb2
+
+#class                   border  backgr. text   indic.  
+client.focused          $color7 $color4 $color0 $color4
+client.focused_inactive $color0 $color0 $color4 $color0
+client.unfocused        $color0 $color0 $color4 $color0
+#client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
+#client.placeholder      #000000 #0c0c0c #ffffff #000000 
+client.background       $color0
+
+#====================
+# BAR
+#====================
+#exec_always --no-startup-id bash /home/matheusmercadante/.config/polybar/launch.sh --grayblocks
